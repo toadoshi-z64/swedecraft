@@ -1,0 +1,157 @@
+ .u-section-1 {
+  background-image: url("images/frutiger_aero.jpg");
+  background-position: 50% 50%;
+  background-size: cover;
+  min-height: 1440px;
+}
+
+.u-section-1 .u-group-elements-1 {
+  width: 1140px;
+  min-height: 951px;
+  height: auto;
+  margin: 150px auto 0;
+}
+
+.u-section-1 .u-shape-1 {
+  height: 873px;
+  background-image: none;
+  margin-top: 78px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-custom-html-1 {
+  height: auto;
+  min-height: 80px;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  margin-top: -951px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-image-1 {
+  width: 78px;
+  height: 78px;
+  margin: -80px auto 0 0;
+}
+
+.u-section-1 .u-image-2 {
+  width: 39px;
+  height: 39px;
+  margin: -57px 114px 0 auto;
+}
+
+.u-section-1 .u-image-3 {
+  width: 39px;
+  height: 39px;
+  margin: -39px 63px 0 auto;
+}
+
+.u-section-1 .u-image-4 {
+  width: 39px;
+  height: 39px;
+  margin: -39px 12px 0 auto;
+}
+
+.u-section-1 .u-btn-1 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: -31px 1014px 0 90px;
+  padding: 0;
+}
+
+.u-section-1 .u-btn-2 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: -25px 896px 0 138px;
+  padding: 0;
+}
+
+.u-section-1 .u-btn-3 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: -24px 790px 0 256px;
+  padding: 0;
+}
+
+.u-section-1 .u-image-5 {
+  height: 871px;
+  filter: none;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  margin-top: 27px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 4.5rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  width: 906px;
+  margin: -824px auto 0;
+}
+
+.u-section-1 .u-custom-html-2 {
+  margin-top: 125px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 1199px) {
+   .u-section-1 {
+    min-height: 607px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 1139px;
+  }
+}
+
+@media (max-width: 991px) {
+   .u-section-1 {
+    min-height: 557px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 991px;
+  }
+}
+
+@media (max-width: 767px) {
+   .u-section-1 {
+    min-height: 431px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 767px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 4rem;
+    width: 767px;
+  }
+}
+
+@media (max-width: 575px) {
+   .u-section-1 {
+    min-height: 323px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 575px;
+  }
+
+  .u-section-1 .u-text-1 {
+    width: 575px;
+  }
+}
