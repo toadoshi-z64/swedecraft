@@ -13,11 +13,13 @@
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Nintendo%203DS%20Internet%20Settings%20Theme%20%28High%20Quality%2C%202022%20Remastered%29.mp3",
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/November%202012%20-%20Nintendo%20eShop%20Music.mp3",
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Nintendo%20Wii%20U%20-%20Mii%20Maker%20Editing%20Mii%20%28TV%20%20Gamepad%29.mp3",
-    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Download%20Management%20-%20Wii%20U%20OS%20OST.mp3"
+    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Download%20Management%20-%20Wii%20U%20OS%20OST.mp3",
+    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/3DS%20Friend%20List.MP3"
   ];
   var audio = new Audio();
   var started = false;
   var shuffled = [];
+  var currentIndex = 0;
   function shufflePlaylist() {
     shuffled = playlist.slice();
     for (var i = shuffled.length - 1; i > 0; i--) {
@@ -27,7 +29,6 @@
       shuffled[j] = temp;
     }
   }
-  var currentIndex = 0;
   function playSong(index) {
     audio.src = shuffled[index];
     audio.volume = 0.5;
