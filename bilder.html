@@ -12,25 +12,41 @@
     <script> var playlist = [
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Nintendo%203DS%20Internet%20Settings%20Theme%20%28High%20Quality%2C%202022%20Remastered%29.mp3",
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/November%202012%20-%20Nintendo%20eShop%20Music.mp3",
-    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Nintendo%20Wii%20U%20-%20Mii%20Maker%20Editing%20Mii%20%28TV%20%20Gamepad%29.mp3"
+    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Nintendo%20Wii%20U%20-%20Mii%20Maker%20Editing%20Mii%20%28TV%20%20Gamepad%29.mp3",
+    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Download%20Management%20-%20Wii%20U%20OS%20OST.mp3"
   ];
-  var current = 0;
   var audio = new Audio();
   var started = false;
+  var shuffled = [];
+  function shufflePlaylist() {
+    shuffled = playlist.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = shuffled[i];
+      shuffled[i] = shuffled[j];
+      shuffled[j] = temp;
+    }
+  }
+  var currentIndex = 0;
   function playSong(index) {
-    audio.src = playlist[index];
+    audio.src = shuffled[index];
     audio.volume = 0.5;
     audio.play();
     audio.onended = function() {
-      current = (current + 1) % playlist.length;
-      playSong(current);
+      currentIndex++;
+      if (currentIndex >= shuffled.length) {
+        currentIndex = 0;
+        shufflePlaylist();
+      }
+      playSong(currentIndex);
     };
   }
   function startPlaylist() {
     if (started) return;
     started = true;
     document.removeEventListener('click', startPlaylist);
-    playSong(current);
+    shufflePlaylist();
+    playSong(currentIndex);
   }
   document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', startPlaylist);
@@ -68,6 +84,10 @@
       </div>
       <p class="u-align-center u-text u-text-black u-text-1">Bilder som jag har gjort</p>
       <div class="u-clearfix u-custom-html u-expanded-width u-custom-html-2"></div>
+      <img class="u-image u-image-default u-image-6" src="images/10000vit.png" alt="" data-image-width="626" data-image-height="368">
+      <img class="u-image u-image-default u-image-7" src="images/frutigeraero.png" alt="" data-image-width="1920" data-image-height="1080">
+      <img class="u-image u-image-default u-image-8" src="images/frutigeraqua.png" alt="" data-image-width="1920" data-image-height="1080">
+      <img class="u-image u-image-default u-image-9" src="images/dorfic.png" alt="" data-image-width="1920" data-image-height="1080">
     </section>
     
     
