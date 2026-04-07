@@ -33,35 +33,33 @@
       shuffled[j] = temp;
     }
   }
-  function playSong(index) {
-    audio.src = shuffled[index];
+  function playNext() {
+    currentIndex++;
+    if (currentIndex >= shuffled.length) {
+      currentIndex = 0;
+      shufflePlaylist();
+    }
+    audio.src = shuffled[currentIndex];
     audio.volume = 0.5;
-    audio.muted = false;
     audio.play();
-    audio.onended = function() {
-      currentIndex++;
-      if (currentIndex >= shuffled.length) {
-        currentIndex = 0;
-        shufflePlaylist();
-      }
-      playSong(currentIndex);
-    };
   }
-  document.addEventListener('DOMContentLoaded', function() {
+  audio.addEventListener('ended', playNext);
+  function startMusic() {
     shufflePlaylist();
+    audio.src = shuffled[currentIndex];
+    audio.volume = 0.5;
     audio.muted = true;
-    audio.src = shuffled[0];
     audio.play().then(function() {
       audio.muted = false;
-      audio.src = shuffled[currentIndex];
-      audio.play();
     }).catch(function() {
       document.addEventListener('click', function handler() {
         document.removeEventListener('click', handler);
-        playSong(currentIndex);
+        audio.muted = false;
+        audio.play();
       });
     });
-  }); </script>
+  }
+  document.addEventListener('DOMContentLoaded', startMusic); </script>
     <link rel="icon" href="images/favicon.png">
     
     
