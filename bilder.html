@@ -22,7 +22,6 @@
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Golf%20%28Course%20Select%29%20-%20Wii%20Sports%20OST.mp3"
   ];
   var audio = new Audio();
-  var started = false;
   var shuffled = [];
   var currentIndex = 0;
   function shufflePlaylist() {
@@ -37,6 +36,7 @@
   function playSong(index) {
     audio.src = shuffled[index];
     audio.volume = 0.5;
+    audio.muted = false;
     audio.play();
     audio.onended = function() {
       currentIndex++;
@@ -47,15 +47,20 @@
       playSong(currentIndex);
     };
   }
-  function startPlaylist() {
-    if (started) return;
-    started = true;
-    document.removeEventListener('click', startPlaylist);
-    shufflePlaylist();
-    playSong(currentIndex);
-  }
   document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('click', startPlaylist);
+    shufflePlaylist();
+    audio.muted = true;
+    audio.src = shuffled[0];
+    audio.play().then(function() {
+      audio.muted = false;
+      audio.src = shuffled[currentIndex];
+      audio.play();
+    }).catch(function() {
+      document.addEventListener('click', function handler() {
+        document.removeEventListener('click', handler);
+        playSong(currentIndex);
+      });
+    });
   }); </script>
     <link rel="icon" href="images/favicon.png">
     
