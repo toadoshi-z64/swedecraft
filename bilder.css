@@ -2,7 +2,7 @@
   background-image: url("images/frutiger_aero.jpg");
   background-position: 50% 50%;
   background-size: cover;
-  min-height: 1460px;
+  min-height: 1440px;
 }
 
 .u-section-1 .u-group-elements-1 {
@@ -98,7 +98,7 @@
   width: 1092px;
   min-height: 789px;
   height: auto;
-  margin: -833px auto 60px;
+  margin: -833px auto 0;
 }
 
 .u-section-1 .u-text-1 {
