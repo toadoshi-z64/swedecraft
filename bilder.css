@@ -2,13 +2,12 @@
   background-image: url("images/frutiger_aero.jpg");
   background-position: 50% 50%;
   background-size: cover;
-  min-height: 1440px;
+  min-height: 1460px;
 }
 
 .u-section-1 .u-group-elements-1 {
   width: 1140px;
   min-height: 951px;
-  height: auto;
   margin: 150px auto 0;
 }
 
@@ -95,155 +94,102 @@
   margin-bottom: 0;
 }
 
+.u-section-1 .u-group-elements-2 {
+  width: 1092px;
+  min-height: 789px;
+  height: auto;
+  margin: -833px auto 60px;
+}
+
 .u-section-1 .u-text-1 {
   font-size: 4.5rem;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
   width: 906px;
-  margin: -824px auto 0;
-}
-
-.u-section-1 .u-custom-html-2 {
-  margin-top: 125px;
-  margin-bottom: 0;
+  margin: 0 94px 0 92px;
 }
 
 .u-section-1 .u-image-6 {
   width: 510px;
   height: 300px;
-  margin: -97px auto 0 calc(((100% - 1440px) / 2)  + 195px);
+  margin: 48px auto 0 23px;
 }
 
 .u-section-1 .u-image-7 {
   width: 533px;
   height: 300px;
-  margin: -300px calc(((100% - 1440px) / 2)  + 174px) 0 auto;
+  margin: -300px 0 0 auto;
 }
 
 .u-section-1 .u-image-8 {
   width: 533px;
   height: 300px;
-  margin: 28px auto 0 calc(((100% - 1440px) / 2)  + 172px);
+  margin: 26px auto 0 0;
 }
 
 .u-section-1 .u-image-9 {
   width: 533px;
   height: 300px;
-  margin: -300px calc(((100% - 1440px) / 2)  + 174px) 0 auto;
+  margin: -300px 0 0 auto;
 }
 
 @media (max-width: 1199px) {
    .u-section-1 {
-    min-height: 1080px;
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 1049px;
   }
 
   .u-section-1 .u-group-elements-1 {
-    width: 1139px;
+    width: 1080px;
   }
 
-  .u-section-1 .u-image-6 {
-    margin-left: calc(((100% - 1080px) / 2)  + 197px);
-  }
-
-  .u-section-1 .u-image-7 {
-    margin-right: calc(((100% - 1080px) / 2)  + 159px);
-    margin-left: calc(((100% - 1080px) / 2)  + 210px);
-  }
-
-  .u-section-1 .u-image-8 {
-    margin-left: calc(((100% - 1080px) / 2) + 172px);
-  }
-
-  .u-section-1 .u-image-9 {
-    margin-right: calc(((100% - 1080px) / 2) + 174px);
+  .u-section-1 .u-group-elements-2 {
+    width: 1080px;
   }
 }
 
 @media (max-width: 991px) {
    .u-section-1 {
-    min-height: 991px;
+    min-height: 981px;
   }
 
   .u-section-1 .u-group-elements-1 {
     width: 991px;
   }
 
-  .u-section-1 .u-image-6 {
-    margin-left: calc(((100% - 991px) / 2)  + 197px);
-  }
-
-  .u-section-1 .u-image-7 {
-    margin-right: calc(((100% - 991px) / 2)  + 159px);
-    margin-left: calc(((100% - 991px) / 2)  + 210px);
-  }
-
-  .u-section-1 .u-image-8 {
-    margin-left: calc(((100% - 991px) / 2) + 172px);
-  }
-
-  .u-section-1 .u-image-9 {
-    margin-right: calc(((100% - 991px) / 2) + 174px);
+  .u-section-1 .u-group-elements-2 {
+    width: 991px;
   }
 }
 
 @media (max-width: 767px) {
    .u-section-1 {
-    min-height: 767px;
+    min-height: 810px;
   }
 
   .u-section-1 .u-group-elements-1 {
+    width: 767px;
+  }
+
+  .u-section-1 .u-group-elements-2 {
     width: 767px;
   }
 
   .u-section-1 .u-text-1 {
     font-size: 4rem;
-    width: 767px;
-  }
-
-  .u-section-1 .u-image-6 {
-    margin-left: calc(((100% - 767px) / 2)  + 197px);
-  }
-
-  .u-section-1 .u-image-7 {
-    margin-right: calc(((100% - 767px) / 2)  + 159px);
-    margin-left: calc(((100% - 767px) / 2)  + 210px);
-  }
-
-  .u-section-1 .u-image-8 {
-    margin-left: calc(((100% - 767px) / 2) + 172px);
-  }
-
-  .u-section-1 .u-image-9 {
-    margin-right: calc(((100% - 767px) / 2) + 174px);
   }
 }
 
 @media (max-width: 575px) {
    .u-section-1 {
-    min-height: 575px;
+    min-height: 663px;
   }
 
   .u-section-1 .u-group-elements-1 {
     width: 575px;
   }
 
-  .u-section-1 .u-text-1 {
+  .u-section-1 .u-group-elements-2 {
     width: 575px;
-  }
-
-  .u-section-1 .u-image-6 {
-    margin-left: calc(((100% - 575px) / 2)  + 65px);
-  }
-
-  .u-section-1 .u-image-7 {
-    margin-right: calc(((100% - 575px) / 2)  + 42px);
-    margin-left: calc(((100% - 575px) / 2)  + 65px);
-  }
-
-  .u-section-1 .u-image-8 {
-    margin-left: calc(((100% - 575px) / 2) + 42px);
-  }
-
-  .u-section-1 .u-image-9 {
-    margin-right: calc(((100% - 575px) / 2) + 42px);
   }
 }
