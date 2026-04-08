@@ -19,7 +19,8 @@
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/04%20Local%20Forecast%20%28Daytime%29.mp3",
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/05%20Local%20Forecast%20%28Nighttime%29.mp3",
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Bowling%20-%20Wii%20Sports%20OST.mp3",
-    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Golf%20%28Course%20Select%29%20-%20Wii%20Sports%20OST.mp3"
+    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Golf%20%28Course%20Select%29%20-%20Wii%20Sports%20OST.mp3",
+    "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/LEASE.mp3"
   ];
   var audio = new Audio();
   var shuffled = [];
@@ -41,9 +42,10 @@
     }
     audio.src = shuffled[currentIndex];
     audio.volume = 0.5;
-    audio.play();
+    audio.play().catch(function() { playNext(); });
   }
   audio.addEventListener('ended', playNext);
+  audio.addEventListener('error', playNext);
   function startMusic() {
     shufflePlaylist();
     audio.src = shuffled[currentIndex];
