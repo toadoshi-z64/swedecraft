@@ -107,157 +107,286 @@
   padding: 0;
 }
 
+.u-section-1 .u-text-1 {
+  font-size: 4.5rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  width: 906px;
+  margin: -838px auto 0;
+}
+
+.u-section-1 .u-text-2 {
+  font-size: 2.25rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  width: 978px;
+  margin: 7px auto 0;
+}
+
+.u-section-1 .u-group-elements-2 {
+  width: 1277px;
+  min-height: 117px;
+  margin: 38px auto 0 calc(((100% - 1440px) / 2));
+}
+
 .u-section-1 .u-custom-html-2 {
-  width: 243px;
   height: auto;
-  min-height: 103px;
-  margin: -327px auto 0;
+  min-height: 80px;
+  width: 1034px;
+  margin: 0 40px 0 203px;
 }
 
 .u-section-1 .u-custom-html-3 {
   width: 185px;
   height: auto;
   min-height: 69px;
-  margin: -237px auto 0;
+  margin: -66px 229px 0 863px;
 }
 
-.u-section-1 .u-text-1 {
-  font-size: 2.25rem;
+.u-section-1 .u-text-3 {
+  font-size: 3rem;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-  width: 978px;
-  margin: -237px auto 0;
+  margin: -81px 371px 0 0;
 }
 
-.u-section-1 .u-text-2 {
-  font-size: 4.5rem;
+.u-section-1 .u-text-4 {
+  font-size: 1.25rem;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-  width: 906px;
-  margin: -284px auto 0;
+  width: 97px;
+  margin: -46px 509px 0 672px;
+}
+
+.u-section-1 .u-custom-html-4 {
+  width: 243px;
+  height: auto;
+  min-height: 103px;
+  margin: -50px 0 0 1034px;
+}
+
+.u-section-1 .u-group-elements-3 {
+  width: 1277px;
+  min-height: 118px;
+  margin: 5px auto 0 calc(((100% - 1440px) / 2));
+}
+
+.u-section-1 .u-custom-html-5 {
+  height: auto;
+  min-height: 80px;
+  width: 1034px;
+  margin: 0 40px 0 203px;
+}
+
+.u-section-1 .u-custom-html-6 {
+  width: 185px;
+  height: auto;
+  min-height: 69px;
+  margin: -66px 229px 0 863px;
+}
+
+.u-section-1 .u-text-5 {
+  font-size: 3rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  margin: -83px 371px 0 0;
+}
+
+.u-section-1 .u-text-6 {
+  font-size: 1.25rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  width: 97px;
+  margin: -44px 509px 0 672px;
+}
+
+.u-section-1 .u-custom-html-7 {
+  width: 243px;
+  height: auto;
+  min-height: 103px;
+  margin: -49px 0 0 1034px;
+}
+
+.u-section-1 .u-group-elements-4 {
+  width: 1277px;
+  min-height: 118px;
+  margin: 5px auto 60px calc(((100% - 1440px) / 2));
+}
+
+.u-section-1 .u-custom-html-8 {
+  height: auto;
+  min-height: 80px;
+  width: 1034px;
+  margin: 0 40px 0 203px;
+}
+
+.u-section-1 .u-text-7 {
+  font-size: 3rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  margin: -78px 371px 0 0;
+}
+
+.u-section-1 .u-text-8 {
+  font-size: 1.25rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  width: 97px;
+  margin: -46px 509px 0 672px;
+}
+
+.u-section-1 .u-custom-html-9 {
+  width: 243px;
+  height: auto;
+  min-height: 103px;
+  margin: -50px 0 0 1034px;
 }
 
 @media (max-width: 1199px) {
    .u-section-1 {
     padding-left: 0;
     padding-right: 0;
-    min-height: 1764px;
+    min-height: 1080px;
   }
 
   .u-section-1 .u-group-elements-1 {
     width: 1080px;
-    margin-top: 1051px;
-    margin-left: calc(((100% - 1080px) / 2));
-  }
-
-  .u-section-1 .u-custom-html-2 {
-    margin-top: -1002px;
-    margin-left: calc(((100% - 1080px) / 2)  + 599px);
-  }
-
-  .u-section-1 .u-custom-html-3 {
-    margin-left: calc(((100% - 1080px) / 2)  + 880px);
+    margin-left: calc(((100% - 1080px) / 2)  + -350px);
   }
 
   .u-section-1 .u-text-1 {
-    margin-left: calc(((100% - 1080px) / 2)  + 87px);
-    margin-right: calc(((100% - 1080px) / 2)  + 87px);
+    margin-top: -1618px;
   }
 
-  .u-section-1 .u-text-2 {
-    margin-top: -510px;
+  .u-section-1 .u-group-elements-2 {
+    width: 1080px;
+    margin-left: calc(((100% - 1080px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-3 {
+    width: 1080px;
+    margin-left: calc(((100% - 1080px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-4 {
+    width: 1080px;
+    margin-left: calc(((100% - 1080px) / 2));
   }
 }
 
 @media (max-width: 991px) {
    .u-section-1 {
-    min-height: 1714px;
+    min-height: 991px;
   }
 
   .u-section-1 .u-group-elements-1 {
     width: 991px;
-    margin-top: 1001px;
+    margin-left: calc(((100% - 991px) / 2)  + -350px);
+  }
+
+  .u-section-1 .u-group-elements-2 {
+    width: 991px;
     margin-left: calc(((100% - 991px) / 2));
   }
 
-  .u-section-1 .u-custom-html-2 {
-    margin-left: calc(((100% - 991px) / 2)  + 599px);
+  .u-section-1 .u-group-elements-3 {
+    width: 991px;
+    margin-left: calc(((100% - 991px) / 2));
   }
 
-  .u-section-1 .u-custom-html-3 {
-    margin-left: calc(((100% - 991px) / 2)  + 791px);
-  }
-
-  .u-section-1 .u-text-1 {
-    margin-left: calc(((100% - 991px) / 2)  + 43px);
-    margin-right: calc(((100% - 991px) / 2)  + 43px);
-  }
-
-  .u-section-1 .u-text-2 {
-    margin-top: -460px;
+  .u-section-1 .u-group-elements-4 {
+    width: 991px;
+    margin-left: calc(((100% - 991px) / 2));
   }
 }
 
 @media (max-width: 767px) {
    .u-section-1 {
-    min-height: 1665px;
+    min-height: 767px;
   }
 
   .u-section-1 .u-group-elements-1 {
     width: 767px;
-    margin-top: 952px;
+    margin-top: 960px;
     margin-left: calc(((100% - 767px) / 2));
-  }
-
-  .u-section-1 .u-custom-html-2 {
-    margin-top: -1092px;
-    margin-left: calc(((100% - 767px) / 2)  + 524px);
-  }
-
-  .u-section-1 .u-custom-html-3 {
-    margin-left: calc(((100% - 767px) / 2)  + 567px);
   }
 
   .u-section-1 .u-text-1 {
-    font-size: 2rem;
+    font-size: 4rem;
     width: 767px;
-    margin-left: calc(((100% - 767px) / 2));
-    margin-right: calc(((100% - 767px) / 2));
+    margin-top: -1647px;
   }
 
   .u-section-1 .u-text-2 {
-    font-size: 4rem;
+    font-size: 2rem;
     width: 767px;
-    margin-top: -411px;
+  }
+
+  .u-section-1 .u-group-elements-2 {
+    width: 767px;
+    margin-left: calc(((100% - 767px) / 2));
+  }
+
+  .u-section-1 .u-text-3 {
+    font-size: 2.6666666666666665rem;
+  }
+
+  .u-section-1 .u-text-4 {
+    font-size: 1.1111111111111112rem;
+  }
+
+  .u-section-1 .u-group-elements-3 {
+    width: 767px;
+    margin-left: calc(((100% - 767px) / 2));
+  }
+
+  .u-section-1 .u-text-5 {
+    font-size: 2.6666666666666665rem;
+  }
+
+  .u-section-1 .u-text-6 {
+    font-size: 1.1111111111111112rem;
+  }
+
+  .u-section-1 .u-group-elements-4 {
+    width: 767px;
+    margin-left: calc(((100% - 767px) / 2));
+  }
+
+  .u-section-1 .u-text-7 {
+    font-size: 2.6666666666666665rem;
+  }
+
+  .u-section-1 .u-text-8 {
+    font-size: 1.1111111111111112rem;
   }
 }
 
 @media (max-width: 575px) {
    .u-section-1 {
-    min-height: 1659px;
+    min-height: 575px;
   }
 
   .u-section-1 .u-group-elements-1 {
     width: 575px;
-    margin-top: 946px;
+    margin-top: 1192px;
     margin-left: calc(((100% - 575px) / 2));
-  }
-
-  .u-section-1 .u-custom-html-2 {
-    margin-left: calc(((100% - 575px) / 2)  + 332px);
-  }
-
-  .u-section-1 .u-custom-html-3 {
-    margin-left: calc(((100% - 575px) / 2)  + 375px);
   }
 
   .u-section-1 .u-text-1 {
     width: 575px;
-    margin-left: calc(((100% - 575px) / 2));
-    margin-right: calc(((100% - 575px) / 2));
+    margin-top: -1880px;
   }
 
   .u-section-1 .u-text-2 {
     width: 575px;
-    margin-top: -406px;
+  }
+
+  .u-section-1 .u-group-elements-2 {
+    width: 575px;
+    margin-left: calc(((100% - 575px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-3 {
+    width: 575px;
+    margin-left: calc(((100% - 575px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-4 {
+    width: 575px;
+    margin-left: calc(((100% - 575px) / 2));
   }
 }/* Authentic Frutiger Aero Button CSS */
 .frutiger-aero-button {
@@ -271,20 +400,20 @@
   
   
   /* Base Styling */
-  background-color: oklch(75% 0.2 140 / 0.8);
+  background-color: oklch(75% 0.2 245 / 0.8);
   background:
     radial-gradient(
     farthest-corner at bottom center,
     rgba(255, 255, 255, 0.7),
     transparent
   ),
-    linear-gradient(to bottom, oklch(45% 0.2 140 / 0.75), oklch(75% 0.2 140 / 0.8));
-  border: 1px solid oklch(75% 0.2 140 / 0.8);
+    linear-gradient(to bottom, oklch(45% 0.2 245 / 0.75), oklch(75% 0.2 245 / 0.8));
+  border: 1px solid oklch(75% 0.2 245 / 0.8);
   border-radius: 9999px;
   /* Shadows and Effects */
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
   /* Typography */
-  color: oklch(15% calc(0.2 * 0.5) 140);
+  color: oklch(15% calc(0.2 * 0.5) 245);
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", system-ui, sans-serif;
   font-weight: 700;
   text-shadow: 0 2px 0.5em rgba(0, 0, 0, 0.2);
@@ -336,4 +465,4 @@
 .frutiger-aero-button.large {
   padding: 1em 3em;
   font-size: 1.125rem;
-} 
+}
