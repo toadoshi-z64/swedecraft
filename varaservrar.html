@@ -9,6 +9,35 @@
 <link rel="stylesheet" href="varaservrar.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <script> window.onload = function () {
+  var servers = [
+    { id: "status-survival", ip: "waking-trophy.gl.joinmc.link" },
+    { id: "status-modded",   ip: "else-que.gl.joinmc.link"               },
+    { id: "status-open",     ip: "scraft.minecraft.party"                  }
+  ];
+  function fetchStatus(server) {
+    var el = document.getElementById(server.id);
+    if (!el) return;
+    fetch("https://api.mcstatus.io/v2/status/java/" + server.ip)
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.online) {
+          var online = (data.players && data.players.online) || 0;
+          var max    = (data.players && data.players.max)    || "?";
+          el.innerHTML = "🟢 " + online + "/" + max;
+          el.style.color = "#4caf50";
+        } else {
+          el.innerHTML = "🔴 Offline";
+          el.style.color = "#f44336";
+        }
+      })
+      .catch(function() {
+        el.innerHTML = "⚠️ Fel";
+      });
+  }
+  servers.forEach(fetchStatus);
+  setInterval(function() { servers.forEach(fetchStatus); }, 60000);
+}; </script>
     
     <link rel="icon" href="images/favicon.png">
     
@@ -46,65 +75,76 @@
       <p class="u-align-center u-text u-text-black u-text-1">Våra servrar!</p>
       <p class="u-align-center u-text u-text-black u-text-2">Vi hostar ett antal minecraft servrar, här finns länkar och info om hur du kommer in!</p>
       <div class="u-clearfix u-group-elements u-group-elements-2">
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-2">
-          <div style="background: linear-gradient(to bottom, #9ad1fc 0%, #73b9e7 15%, #138ee0 50%, #0d75bb 60%, #1484cf 90%, #1991e0 100%); border-top: 1px solid #4da1da; border-left: 1px solid #4da1da; border-right: 1px solid #4da1da; height: 80px; width: 100%;"></div>
-        </div>
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-3">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7sI9b1GzTS1PaTkU9dUrcaPUe7OoN9dVVTy7AVtbgaVazPg/viewform?usp=sharing&amp;ouid=104270848934046880928">
-            <button class="frutiger-aero-button medium">Ansök</button>
-          </a>
-        </div>
-        <p class="u-align-center u-text u-text-black u-text-3">SwedecrafT survival</p>
-        <p class="u-align-center u-text u-text-black u-text-4">(whitelist) </p>
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-4">
-          <button class="frutiger-aero-button medium" onclick="
+        <div class="u-clearfix u-expanded-width u-group-elements u-group-elements-3">
+          <div class="custom-expanded u-clearfix u-custom-html u-custom-html-2">
+            <div style="background: linear-gradient(to bottom, #9ad1fc 0%, #73b9e7 15%, #138ee0 50%, #0d75bb 60%, #1484cf 90%, #1991e0 100%); border-top: 1px solid #4da1da; border-left: 1px solid #4da1da; border-right: 1px solid #4da1da; height: 80px; width: 100%;"></div>
+          </div>
+          <div class="custom-expanded u-clearfix u-custom-html u-custom-html-3">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7sI9b1GzTS1PaTkU9dUrcaPUe7OoN9dVVTy7AVtbgaVazPg/viewform?usp=sharing&amp;ouid=104270848934046880928">
+              <button class="frutiger-aero-button medium">Ansök</button>
+            </a>
+          </div>
+          <p class="u-align-center u-text u-text-black u-text-3">SwedecrafT survival</p>
+          <p class="u-align-center u-text u-text-black u-text-4">(whitelist) </p>
+          <div class="custom-expanded u-clearfix u-custom-html u-custom-html-4">
+            <button class="frutiger-aero-button medium" onclick="
     navigator.clipboard.writeText('waking-trophy.gl.joinmc.link');
     this.textContent = 'Kopierad!';
     setTimeout(() =&gt; this.textContent = 'Server IP', 2000);
   "> Server IP </button>
+          </div>
+        </div>
+        <div class="u-clearfix u-custom-html u-custom-html-5">
+          <div id="status-survival" style="font-size:14px; color:#aaa;">⏳ Laddar...</div>
         </div>
       </div>
-      <div class="u-clearfix u-group-elements u-group-elements-3">
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-5">
+      <div class="u-clearfix u-group-elements u-group-elements-4">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-6">
           <div style="background: linear-gradient(to bottom, #9ad1fc 0%, #73b9e7 15%, #138ee0 50%, #0d75bb 60%, #1484cf 90%, #1991e0 100%); border-top: 1px solid #4da1da; border-left: 1px solid #4da1da; border-right: 1px solid #4da1da; height: 80px; width: 100%;"></div>
         </div>
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-6">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-7">
           <a href="https://forms.gle/SHXRGRvUuqQGmL4C6">
             <button class="frutiger-aero-button medium">Ansök</button>
           </a>
         </div>
         <p class="u-align-center u-text u-text-black u-text-5">SwedecrafT modded</p>
         <p class="u-align-center u-text u-text-black u-text-6">(whitelist) </p>
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-7">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-8">
           <button class="frutiger-aero-button medium" onclick="
     navigator.clipboard.writeText('kommer snart');
     this.textContent = 'Kopierad!';
     setTimeout(() =&gt; this.textContent = 'Server IP', 2000);
   "> Server IP </button>
         </div>
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-8">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-9">
           <a href="https://swedecraft.com/SwedecrafTmodded">
             <button class="frutiger-aero-button medium">info</button>
           </a>
         </div>
+        <div class="u-clearfix u-custom-html u-custom-html-10">
+          <div id="status-modded" style="font-size:14px; color:#aaa;">⏳ Laddar...</div>
+        </div>
       </div>
-      <div class="u-clearfix u-group-elements u-group-elements-4">
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-9">
+      <div class="u-clearfix u-group-elements u-group-elements-5">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-11">
           <div style="background: linear-gradient(to bottom, #9ad1fc 0%, #73b9e7 15%, #138ee0 50%, #0d75bb 60%, #1484cf 90%, #1991e0 100%); border-top: 1px solid #4da1da; border-left: 1px solid #4da1da; border-right: 1px solid #4da1da; height: 80px; width: 100%;"></div>
         </div>
         <p class="u-align-center u-text u-text-black u-text-7">SwedecrafT open</p>
         <p class="u-align-center u-text u-text-black u-text-8">(öppen)</p>
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-10">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-12">
           <button class="frutiger-aero-button medium" onclick="
     navigator.clipboard.writeText('scraft.minecraft.party');
     this.textContent = 'Kopierad!';
     setTimeout(() =&gt; this.textContent = 'Server IP', 2000);
   "> Server IP </button>
         </div>
-        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-11">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-13">
           <a href="https://swedecraft.com/open">
             <button class="frutiger-aero-button medium">info</button>
           </a>
+        </div>
+        <div class="u-clearfix u-custom-html u-custom-html-14">
+          <div id="status-open" style="font-size:14px; color:#aaa;">⏳ Laddar...</div>
         </div>
       </div>
     </section>
