@@ -31,8 +31,19 @@
     "https://archive.org/download/nintendo-3-ds-internet-settings-theme-high-quality-2022-remastered/Qualle.mp3"
   ];
   var audio = new Audio();
+  audio.crossOrigin = "anonymous";
   var shuffled = [];
   var currentIndex = 0;
+  function setPitch() {
+    var roll = Math.random();
+      if (roll < 0.5) {
+      audio.preservesPitch = false;
+      audio.playbackRate = 0.9439; // en tonart ner
+    } else {
+      audio.preservesPitch = true;
+      audio.playbackRate = 1.0; // normal
+    }
+  }
   function shufflePlaylist() {
     shuffled = playlist.slice();
     for (var i = shuffled.length - 1; i > 0; i--) {
@@ -50,6 +61,7 @@
     }
     audio.src = shuffled[currentIndex];
     audio.volume = 0.5;
+    setPitch();
     audio.play().catch(function() { playNext(); });
   }
   audio.addEventListener('ended', playNext);
@@ -58,6 +70,7 @@
     shufflePlaylist();
     audio.src = shuffled[currentIndex];
     audio.volume = 0.5;
+    setPitch();
     audio.muted = true;
     audio.play().then(function() {
       audio.muted = false;
