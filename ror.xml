@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+<channel>
+  <title>ROR Sitemap for https://swedecraft.com/</title>
+  <link>https://swedecraft.com/</link>
+
+<item>
+     <link>https://swedecraft.com/</link>
+     <title>SwedecrafT</title>
+     <description>SwedecrafT är en svensk Minecraft Server och separat grupp som har använt sig utav FAST NÄT i över 4 år</description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>0</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://swedecraft.com/separat_Grupp.html</link>
+     <title>separat_Grupp</title>
+     <description>separat_Grupp</description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://swedecraft.com/Mina_projekt.html</link>
+     <title>Mina projekt</title>
+     <description>Mina projekt</description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://swedecraft.com/varaservrar</link>
+     <title>Våra servrar</title>
+     <description>Här finns info om alla SwedecrafTs servrar och hur många som är online just nu!</description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>1</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://swedecraft.com/SwedecrafTmodded</link>
+     <title>SwedecrafT Modded</title>
+     <description>Ladda ner gratis och ansök!</description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+<item>
+     <link>https://swedecraft.com/open</link>
+     <title>open</title>
+     <description>open</description>
+     <ror:updatePeriod></ror:updatePeriod>
+     <ror:sortOrder>2</ror:sortOrder>
+     <ror:resourceOf>sitemap</ror:resourceOf>
+</item>
+</channel>
+</rss>
+  
