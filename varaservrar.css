@@ -232,7 +232,7 @@
   width: 1277px;
   min-height: 118px;
   height: auto;
-  margin: 5px auto 0 calc(((100% - 1440px) / 2));
+  margin: 128px auto 0 calc(((100% - 1440px) / 2));
 }
 
 .u-section-1 .u-custom-html-11 {
@@ -275,6 +275,60 @@
   margin: -80px 21px 0 1156px;
 }
 
+.u-section-1 .u-group-elements-6 {
+  width: 1277px;
+  min-height: 114px;
+  height: auto;
+  margin: -241px auto 60px calc(((100% - 1440px) / 2));
+}
+
+.u-section-1 .u-custom-html-15 {
+  height: auto;
+  min-height: 80px;
+  width: 1034px;
+  margin: 0 40px 0 203px;
+}
+
+.u-section-1 .u-text-9 {
+  font-size: 3rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  margin: -78px 371px 0 0;
+}
+
+.u-section-1 .u-text-10 {
+  font-size: 1.25rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  width: 97px;
+  margin: -46px 508px 0 672px;
+}
+
+.u-section-1 .u-custom-html-16 {
+  width: 243px;
+  height: auto;
+  min-height: 103px;
+  margin: -54px 0 0 1034px;
+}
+
+.u-section-1 .u-custom-html-17 {
+  width: 94px;
+  height: auto;
+  min-height: 69px;
+  margin: -103px 416px 0 767px;
+}
+
+.u-section-1 .u-custom-html-18 {
+  height: auto;
+  min-height: 27px;
+  margin: -80px 21px 0 1156px;
+}
+
+.u-section-1 .u-custom-html-19 {
+  width: 185px;
+  height: auto;
+  min-height: 69px;
+  margin: -16px 202px 0 890px;
+}
+
 @media (max-width: 1199px) {
    .u-section-1 {
     padding-left: 0;
@@ -287,13 +341,13 @@
   }
 
   .u-section-1 .u-text-1 {
-    margin-right: calc(((100% - 1080px) / 2) + 87px);
     margin-left: calc(((100% - 1080px) / 2) + 87px);
+    margin-right: calc(((100% - 1080px) / 2) + 87px);
   }
 
   .u-section-1 .u-text-2 {
-    margin-right: calc(((100% - 1080px) / 2) + 51px);
     margin-left: calc(((100% - 1080px) / 2) + 51px);
+    margin-right: calc(((100% - 1080px) / 2) + 51px);
   }
 
   .u-section-1 .u-group-elements-2 {
@@ -307,6 +361,11 @@
   }
 
   .u-section-1 .u-group-elements-5 {
+    width: 1080px;
+    margin-left: calc(((100% - 1080px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-6 {
     width: 1080px;
     margin-left: calc(((100% - 1080px) / 2));
   }
@@ -322,13 +381,13 @@
   }
 
   .u-section-1 .u-text-1 {
-    margin-right: calc(((100% - 991px) / 2) + 43px);
     margin-left: calc(((100% - 991px) / 2) + 43px);
+    margin-right: calc(((100% - 991px) / 2) + 43px);
   }
 
   .u-section-1 .u-text-2 {
-    margin-right: calc(((100% - 991px) / 2) + 7px);
     margin-left: calc(((100% - 991px) / 2) + 7px);
+    margin-right: calc(((100% - 991px) / 2) + 7px);
   }
 
   .u-section-1 .u-group-elements-2 {
@@ -342,6 +401,11 @@
   }
 
   .u-section-1 .u-group-elements-5 {
+    width: 991px;
+    margin-left: calc(((100% - 991px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-6 {
     width: 991px;
     margin-left: calc(((100% - 991px) / 2));
   }
@@ -358,14 +422,14 @@
 
   .u-section-1 .u-text-1 {
     font-size: 4rem;
-    margin-right: calc(((100% - 767px) / 2));
     margin-left: calc(((100% - 767px) / 2));
+    margin-right: calc(((100% - 767px) / 2));
   }
 
   .u-section-1 .u-text-2 {
     font-size: 2rem;
-    margin-right: calc(((100% - 767px) / 2));
     margin-left: calc(((100% - 767px) / 2));
+    margin-right: calc(((100% - 767px) / 2));
   }
 
   .u-section-1 .u-group-elements-2 {
@@ -406,6 +470,19 @@
   .u-section-1 .u-text-8 {
     font-size: 1.1111111111111112rem;
   }
+
+  .u-section-1 .u-group-elements-6 {
+    width: 767px;
+    margin-left: calc(((100% - 767px) / 2));
+  }
+
+  .u-section-1 .u-text-9 {
+    font-size: 2.6666666666666665rem;
+  }
+
+  .u-section-1 .u-text-10 {
+    font-size: 1.1111111111111112rem;
+  }
 }
 
 @media (max-width: 575px) {
@@ -418,28 +495,33 @@
   }
 
   .u-section-1 .u-text-1 {
-    margin-right: 43px;
-    margin-left: 156px;
+    margin-left: calc(((100% - 575px) / 2));
+    margin-right: calc(((100% - 575px) / 2));
   }
 
   .u-section-1 .u-text-2 {
-    margin-right: 25px;
-    margin-left: 102px;
+    margin-left: calc(((100% - 575px) / 2));
+    margin-right: calc(((100% - 575px) / 2));
   }
 
   .u-section-1 .u-group-elements-2 {
     width: 575px;
-    margin-left: 25px;
+    margin-left: calc(((100% - 575px) / 2));
   }
 
   .u-section-1 .u-group-elements-4 {
     width: 575px;
-    margin-left: 25px;
+    margin-left: calc(((100% - 575px) / 2));
   }
 
   .u-section-1 .u-group-elements-5 {
     width: 575px;
-    margin-left: 25px;
+    margin-left: calc(((100% - 575px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-6 {
+    width: 575px;
+    margin-left: calc(((100% - 575px) / 2));
   }
 }/* Authentic Frutiger Aero Button CSS */
 .frutiger-aero-button {

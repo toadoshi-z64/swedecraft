@@ -12,7 +12,8 @@
     <script> window.onload = function () {
   var servers = [
     { id: "status-survival", ip: "waking-trophy.gl.joinmc.link" },
-    { id: "status-modded",   ip: "else-que.gl.joinmc.link"               },
+    { id: "status-modded",   ip: "modded.quedoom.com"               },
+	 { id: "status-aero",   ip: "else-que.gl.joinmc.link"               },
     { id: "status-open",     ip: "scraft.minecraft.party"                  }
   ];
   function fetchStatus(server) {
@@ -145,6 +146,33 @@
         </div>
         <div class="u-clearfix u-custom-html u-custom-html-14">
           <div id="status-open" style="font-size:14px; color:#aaa;">⏳ Laddar...</div>
+        </div>
+      </div>
+      <div class="u-clearfix u-group-elements u-group-elements-6">
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-15">
+          <div style="background: linear-gradient(to bottom, #9ad1fc 0%, #73b9e7 15%, #138ee0 50%, #0d75bb 60%, #1484cf 90%, #1991e0 100%); border-top: 1px solid #4da1da; border-left: 1px solid #4da1da; border-right: 1px solid #4da1da; height: 80px; width: 100%;"></div>
+        </div>
+        <p class="u-align-center u-text u-text-black u-text-9">SwedecrafT AERO</p>
+        <p class="u-align-center u-text u-text-black u-text-10">(snart)</p>
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-16">
+          <button class="frutiger-aero-button medium" onclick="
+    navigator.clipboard.writeText('scraft.minecraft.party');
+    this.textContent = 'Kopierad!';
+    setTimeout(() =&gt; this.textContent = 'Server IP', 2000);
+  "> Server IP </button>
+        </div>
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-17">
+          <a href="https://swedecraft.com/aero">
+            <button class="frutiger-aero-button medium">info</button>
+          </a>
+        </div>
+        <div class="u-clearfix u-custom-html u-custom-html-18">
+          <div id="status-aero" style="font-size:14px; color:#aaa;">⏳ Laddar...</div>
+        </div>
+        <div class="custom-expanded u-clearfix u-custom-html u-custom-html-19">
+          <a href="https://forms.gle/S1i8Tg7NDq2SRC5C9">
+            <button class="frutiger-aero-button medium">Ansök</button>
+          </a>
         </div>
       </div>
     </section>
