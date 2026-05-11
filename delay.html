@@ -377,24 +377,37 @@
   <div class="hero">
     <div class="hero-eyebrow">Discord Automation</div>
     <h1>Schedule a<br/><span>Discord Message</span></h1>
-    <p>Enter a Discord User ID, your message, and the time you want it delivered.</p>
+    <p>Logga in med Discord och schemalägg ett meddelande till dig själv.</p>
   </div>
 
-  <div class="card">
-    <div class="field">
-      <div class="field-label">Discord User ID</div>
-      <div class="input-wrap">
-        <input type="text" id="username" placeholder="123456789012345678" autocomplete="off"/>
+  <!-- Login view -->
+  <div class="card" id="loginCard">
+    <button class="btn" id="loginBtn" onclick="loginWithDiscord()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      <span>Logga in med Discord</span>
+    </button>
+  </div>
+
+  <!-- Message view (hidden until logged in) -->
+  <div class="card" id="msgCard" style="display:none">
+    <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1.4rem;">
+      <img id="avatar" src="" width="36" height="36" style="border-radius:50%;display:none"/>
+      <div>
+        <div style="font-size:0.8rem;font-weight:700;" id="userTag"></div>
+        <div style="font-size:0.65rem;color:var(--muted);font-family:'JetBrains Mono',monospace;" id="userId"></div>
       </div>
+      <button onclick="logout()" style="margin-left:auto;background:none;border:1px solid var(--border2);color:var(--muted);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.7rem;cursor:pointer;">Logga ut</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="field" style="margin-top:1.2rem;">
+      <div class="field-label">Meddelande till dig själv</div>
+      <textarea id="message" placeholder="Skriv ditt meddelande här…"></textarea>
     </div>
 
     <div class="field">
-      <div class="field-label">Message</div>
-      <textarea id="message" placeholder="Type your message here…"></textarea>
-    </div>
-
-    <div class="field">
-      <div class="field-label">Send At</div>
+      <div class="field-label">Skicka kl.</div>
       <input type="time" id="sendTime"/>
     </div>
 
@@ -402,7 +415,7 @@
 
     <button class="btn" id="sendBtn">
       <span class="spinner" id="spinner"></span>
-      <span id="btnLabel">Send Message</span>
+      <span id="btnLabel">Schemalägg meddelande</span>
     </button>
 
     <div class="toast" id="toast"></div>
@@ -412,18 +425,75 @@
 </main>
 
 <script>
-  var NODE_RED_URL = "https://viability-outtakes-polish.ngrok-free.dev/discord-send";
+  var NODE_RED_URL  = "https://viability-outtakes-polish.ngrok-free.dev/discord-send";
+  var AUTH_URL      = "https://viability-outtakes-polish.ngrok-free.dev/discord-auth";
+  var CLIENT_ID     = "1501874884655976599";
+  var REDIRECT_URI  = "https://swedecraft.com/delay";
 
-  document.getElementById('sendBtn').addEventListener('click', sendMsg);
+  // Check if returning from Discord OAuth2
+  var params = new URLSearchParams(window.location.search);
+  var code   = params.get('code');
 
-  ['username', 'sendTime'].forEach(function(id) {
-    document.getElementById(id).addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') sendMsg();
-    });
-  });
+  // Check if already logged in
+  var savedUser = null;
+  try { savedUser = JSON.parse(sessionStorage.getItem('discordUser')); } catch(e) {}
+
+  if (savedUser) {
+    showMessageView(savedUser);
+  } else if (code) {
+    exchangeCode(code);
+  }
+
+  function loginWithDiscord() {
+    var url = 'https://discord.com/oauth2/authorize'
+      + '?client_id=' + CLIENT_ID
+      + '&redirect_uri=' + encodeURIComponent(REDIRECT_URI)
+      + '&response_type=code'
+      + '&scope=identify';
+    window.location.href = url;
+  }
+
+  async function exchangeCode(code) {
+    document.getElementById('loginCard').innerHTML = '<p style="text-align:center;color:var(--muted);font-family:\'JetBrains Mono\',monospace;font-size:0.8rem;">Loggar in…</p>';
+    try {
+      var res = await fetch(AUTH_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
+        body: JSON.stringify({ code: code, redirectUri: REDIRECT_URI })
+      });
+      var user = await res.json();
+      if (user.id) {
+        sessionStorage.setItem('discordUser', JSON.stringify(user));
+        window.history.replaceState({}, document.title, window.location.pathname);
+        showMessageView(user);
+      } else {
+        document.getElementById('loginCard').innerHTML = '<p style="color:var(--error);text-align:center;font-size:0.8rem;">Inloggning misslyckades. <a href="" style="color:var(--accent)">Försök igen</a></p>';
+      }
+    } catch(e) {
+      document.getElementById('loginCard').innerHTML = '<p style="color:var(--error);text-align:center;font-size:0.8rem;">Kunde inte nå servern. <a href="" style="color:var(--accent)">Försök igen</a></p>';
+    }
+  }
+
+  function showMessageView(user) {
+    document.getElementById('loginCard').style.display = 'none';
+    document.getElementById('msgCard').style.display = 'block';
+    document.getElementById('userTag').textContent = user.username;
+    document.getElementById('userId').textContent = 'ID: ' + user.id;
+    if (user.avatar) {
+      var avatarEl = document.getElementById('avatar');
+      avatarEl.src = 'https://cdn.discordapp.com/avatars/' + user.id + '/' + user.avatar + '.png';
+      avatarEl.style.display = 'block';
+    }
+    document.getElementById('sendBtn').addEventListener('click', sendMsg);
+  }
+
+  function logout() {
+    sessionStorage.removeItem('discordUser');
+    window.location.reload();
+  }
 
   async function sendMsg() {
-    var username = document.getElementById('username').value.trim();
+    var user     = JSON.parse(sessionStorage.getItem('discordUser'));
     var message  = document.getElementById('message').value.trim();
     var sendTime = document.getElementById('sendTime').value;
     var btn      = document.getElementById('sendBtn');
@@ -433,43 +503,40 @@
 
     toast.className = 'toast';
 
-    if (!username || !message || !sendTime) {
+    if (!message || !sendTime) {
       toast.className = 'toast show err';
-      toast.textContent = '⚠ Please fill in all three fields.';
+      toast.textContent = '⚠ Fyll i meddelande och tid.';
       return;
     }
 
     btn.classList.add('loading');
     spinner.style.display = 'block';
-    label.textContent = 'Sending…';
+    label.textContent = 'Skickar…';
 
     try {
       var res = await fetch(NODE_RED_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'ngrok-skip-browser-warning': 'true'
-        },
-        body: JSON.stringify({ userId: username, message: message, sendTime: sendTime })
+        headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'true' },
+        body: JSON.stringify({ userId: user.id, message: message, sendTime: sendTime })
       });
 
       if (res.ok) {
         toast.className = 'toast show ok';
-        toast.textContent = '✓ Message queued successfully!';
+        toast.textContent = '✓ Meddelande schemalagt!';
         document.getElementById('message').value = '';
         document.getElementById('sendTime').value = '';
       } else {
         toast.className = 'toast show err';
-        toast.textContent = '✗ Node-RED returned error ' + res.status;
+        toast.textContent = '✗ Node-RED returnerade fel ' + res.status;
       }
     } catch(e) {
       toast.className = 'toast show err';
-      toast.textContent = '✗ Could not reach Node-RED — is localtunnel running?';
+      toast.textContent = '✗ Kunde inte nå Node-RED — kör ngrok?';
     }
 
     btn.classList.remove('loading');
     spinner.style.display = 'none';
-    label.textContent = 'Send Message';
+    label.textContent = 'Schemalägg meddelande';
   }
 </script>
 
