@@ -250,25 +250,26 @@
   // Sätt dagens datum som default
   document.getElementById('sendDate').value = new Date().toISOString().split('T')[0];
 
-  var params = new URLSearchParams(window.location.search);
-  var code   = params.get('code');
+  // Kolla sessionStorage vid start
   var savedUser = null;
   try { savedUser = JSON.parse(sessionStorage.getItem('discordUser')); } catch(e) {}
+  if (savedUser) showMessageView(savedUser);
 
-  if (savedUser) {
-    showMessageView(savedUser);
-  } else if (code) {
-    document.getElementById('loginCard').innerHTML = '<p style="color:#4a5268;font-family:\'JetBrains Mono\',monospace;font-size:0.8rem;padding:0.5rem;">Loggar in…</p>';
-    exchangeCode(code);
-  }
+  // Ta emot OAuth-koden från delay.html via postMessage
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'discord_code') {
+      document.getElementById('loginCard').innerHTML = '<p style="color:#4a5268;font-family:\'JetBrains Mono\',monospace;font-size:0.8rem;padding:0.5rem;">Loggar in…</p>';
+      exchangeCode(e.data.code);
+    }
+  });
 
   function loginWithDiscord() {
-    var url = 'https://discord.com/oauth2/authorize'
+    // Navigera hela sidan till Discord — delay.html tar emot redirecten och skickar koden hit
+    window.top.location.href = 'https://discord.com/oauth2/authorize'
       + '?client_id=' + CLIENT_ID
       + '&redirect_uri=' + encodeURIComponent(REDIRECT_URI)
       + '&response_type=code'
       + '&scope=identify';
-    window.location.href = url;
   }
 
   async function exchangeCode(code) {
