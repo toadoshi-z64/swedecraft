@@ -1,28 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Delay Bot — Swedecraft</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Clash+Display:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #080a0f;
-      --surface:  #0f1219;
-      --border:   #1c2030;
-      --border2:  #252d42;
-      --accent:   #5865f2;
-      --accent2:  #7289ff;
-      --glow:     rgba(88,101,242,0.25);
-      --text:     #dde1f0;
-      --muted:    #4a5268;
-      --success:  #3ba55d;
-      --error:    #ed4245;
+      --bg:      #080a0f;
+      --surface: #0f1219;
+      --border:  #1c2030;
+      --border2: #252d42;
+      --accent:  #5865f2;
+      --accent2: #7289ff;
+      --glow:    rgba(88,101,242,0.25);
+      --text:    #dde1f0;
+      --muted:   #4a5268;
+      --success: #3ba55d;
+      --error:   #ed4245;
     }
-
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
 
     html, body {
       min-height: 100vh;
@@ -31,7 +29,6 @@
       font-family: 'Syne', 'Segoe UI', sans-serif;
     }
 
-    /* Noise texture overlay */
     body::before {
       content: '';
       position: fixed;
@@ -42,7 +39,6 @@
       z-index: 0;
     }
 
-    /* Grid lines */
     body::after {
       content: '';
       position: fixed;
@@ -55,21 +51,17 @@
       z-index: 0;
     }
 
-    /* Glow orb */
     .orb {
       position: fixed;
-      width: 700px;
-      height: 700px;
+      width: 700px; height: 700px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(88,101,242,0.08) 0%, transparent 65%);
-      top: -200px;
-      left: 50%;
+      top: -200px; left: 50%;
       transform: translateX(-50%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Layout */
     .page {
       position: relative;
       z-index: 1;
@@ -78,10 +70,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 3rem 1.5rem;
+      padding: 6rem 1.5rem 3rem;
     }
 
-    /* Top nav */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -111,13 +102,7 @@
     }
 
     .nav-logo-icon svg { width: 18px; height: 18px; fill: #fff; }
-
-    .nav-brand {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
+    .nav-brand { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
     .nav-tag {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.65rem;
@@ -129,10 +114,9 @@
       border-radius: 99px;
     }
 
-    /* Hero text */
     .hero {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
       animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
     }
 
@@ -149,11 +133,9 @@
       gap: 0.5rem;
     }
 
-    .hero-eyebrow::before,
-    .hero-eyebrow::after {
+    .hero-eyebrow::before, .hero-eyebrow::after {
       content: '';
-      width: 30px;
-      height: 1px;
+      width: 30px; height: 1px;
       background: var(--accent);
       opacity: 0.5;
     }
@@ -173,15 +155,8 @@
       background-clip: text;
     }
 
-    .hero p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 340px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+    .hero p { font-size: 0.95rem; color: var(--muted); max-width: 380px; margin: 0 auto; line-height: 1.7; }
 
-    /* Card */
     .card {
       width: 100%;
       max-width: 460px;
@@ -189,10 +164,7 @@
       border: 1px solid var(--border2);
       border-radius: 24px;
       padding: 2.5rem;
-      box-shadow:
-        0 0 0 1px rgba(88,101,242,0.08),
-        0 40px 80px rgba(0,0,0,0.6),
-        0 0 60px rgba(88,101,242,0.05);
+      box-shadow: 0 0 0 1px rgba(88,101,242,0.08), 0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(88,101,242,0.05);
       animation: fadeUp 0.7s 0.1s cubic-bezier(0.22,1,0.36,1) both;
     }
 
@@ -201,10 +173,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Fields */
-    .field {
-      margin-bottom: 1.4rem;
-    }
+    .field { margin-bottom: 1.4rem; }
 
     .field-label {
       font-family: 'JetBrains Mono', monospace;
@@ -227,19 +196,6 @@
       box-shadow: 0 0 6px var(--accent);
     }
 
-    .input-wrap { position: relative; }
-
-    .input-prefix {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--accent2);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9rem;
-      pointer-events: none;
-    }
-
     input, textarea {
       width: 100%;
       background: var(--bg);
@@ -254,34 +210,17 @@
       -webkit-appearance: none;
     }
 
-    input.has-prefix { padding-left: 1.7rem; }
-
-    input[type="time"] {
-      font-family: 'JetBrains Mono', monospace;
-      color-scheme: dark;
-    }
-
-    input:focus, textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--glow);
-    }
-
+    input[type="time"] { font-family: 'JetBrains Mono', monospace; color-scheme: dark; }
+    input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--glow); }
     input::placeholder, textarea::placeholder { color: var(--border2); }
+    textarea { resize: vertical; min-height: 110px; line-height: 1.65; }
 
-    textarea {
-      resize: vertical;
-      min-height: 110px;
-      line-height: 1.65;
-    }
-
-    /* Divider */
     .divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--border2), transparent);
       margin: 1.8rem 0;
     }
 
-    /* Button */
     .btn {
       width: 100%;
       padding: 0.9rem 1.5rem;
@@ -302,6 +241,7 @@
       overflow: hidden;
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
       box-shadow: 0 4px 24px var(--glow);
+      text-decoration: none;
     }
 
     .btn::before {
@@ -315,6 +255,8 @@
     .btn:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 32px var(--glow); }
     .btn:active { transform: translateY(0); }
     .btn.loading { opacity: 0.65; pointer-events: none; }
+    .btn.secondary { background: transparent; border: 1px solid var(--border2); color: var(--muted); box-shadow: none; margin-top: 0.8rem; font-size: 0.8rem; }
+    .btn.secondary:hover { background: var(--border); color: var(--text); transform: translateY(-1px); }
 
     .spinner {
       display: none;
@@ -327,7 +269,6 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Toast */
     .toast {
       display: none;
       margin-top: 1rem;
@@ -342,7 +283,49 @@
     .toast.ok  { background: rgba(59,165,93,0.1);  border: 1px solid rgba(59,165,93,0.25);  color: var(--success); }
     .toast.err { background: rgba(237,66,69,0.08); border: 1px solid rgba(237,66,69,0.25);  color: var(--error); }
 
-    /* Footer */
+    .user-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .user-row img {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: 2px solid var(--border2);
+    }
+
+    .user-row .name { font-size: 0.9rem; font-weight: 700; }
+    .user-row .id   { font-size: 0.65rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+    .logout-btn {
+      margin-left: auto;
+      background: none;
+      border: 1px solid var(--border2);
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.7rem;
+      cursor: pointer;
+      font-family: 'Syne', sans-serif;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .logout-btn:hover { color: var(--error); border-color: var(--error); }
+
+    .invite-notice {
+      background: rgba(88,101,242,0.07);
+      border: 1px solid rgba(88,101,242,0.2);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+
+    .invite-notice strong { color: var(--accent2); }
+
     .footer {
       margin-top: 2.5rem;
       font-family: 'JetBrains Mono', monospace;
@@ -355,18 +338,17 @@
 
     @media (max-width: 500px) {
       .card { padding: 1.8rem 1.4rem; }
-      .nav { padding: 1rem 1.2rem; }
+      .nav  { padding: 1rem 1.2rem; }
     }
   </style>
 </head>
 <body>
-
 <div class="orb"></div>
 
 <nav class="nav">
   <a class="nav-logo" href="https://swedecraft.com">
     <div class="nav-logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
     </div>
     <span class="nav-brand">Swedecraft</span>
   </a>
@@ -380,40 +362,56 @@
     <p>Logga in med Discord och schemalägg ett meddelande till dig själv.</p>
   </div>
 
-  <!-- Login view -->
-  <div class="card" id="loginCard">
-    <button class="btn" id="loginBtn" onclick="loginWithDiscord()">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-      <span>Logga in med Discord</span>
-    </button>
+  <!-- Steg 1: Bjud in boten -->
+  <div class="card" id="inviteCard">
+    <div class="invite-notice">
+      <strong>Steg 1</strong> — Bjud in Delay-boten till din server. Boten behöver vara på din server för att kunna skicka DM:ar.
+    </div>
+    <a class="btn" id="inviteBtn" href="https://discord.com/oauth2/authorize?client_id=1501874884655976599&permissions=2048&scope=bot" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      Bjud in boten till din server
+    </a>
+    <button class="btn secondary" onclick="showLogin()">Boten är redan inbjuden →</button>
   </div>
 
-  <!-- Message view (hidden until logged in) -->
+  <!-- Steg 2: Logga in -->
+  <div class="card" id="loginCard" style="display:none">
+    <div class="invite-notice">
+      <strong>Steg 2</strong> — Logga in med ditt Discord-konto så att boten vet vem den ska skicka till.
+    </div>
+    <button class="btn" onclick="loginWithDiscord()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+      Logga in med Discord
+    </button>
+    <button class="btn secondary" onclick="showInvite()">← Tillbaka</button>
+  </div>
+
+  <!-- Steg 3: Skicka meddelande -->
   <div class="card" id="msgCard" style="display:none">
-    <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1.4rem;">
-      <img id="avatar" src="" width="36" height="36" style="border-radius:50%;display:none"/>
+    <div class="user-row">
+      <img id="avatar" src="" alt=""/>
       <div>
-        <div style="font-size:0.8rem;font-weight:700;" id="userTag"></div>
-        <div style="font-size:0.65rem;color:var(--muted);font-family:'JetBrains Mono',monospace;" id="userId"></div>
+        <div class="name" id="userTag"></div>
+        <div class="id" id="userId"></div>
       </div>
-      <button onclick="logout()" style="margin-left:auto;background:none;border:1px solid var(--border2);color:var(--muted);border-radius:8px;padding:0.3rem 0.7rem;font-size:0.7rem;cursor:pointer;">Logga ut</button>
+      <button class="logout-btn" onclick="logout()">Logga ut</button>
     </div>
 
     <div class="divider"></div>
 
-    <div class="field" style="margin-top:1.2rem;">
+    <div class="field">
       <div class="field-label">Meddelande till dig själv</div>
       <textarea id="message" placeholder="Skriv ditt meddelande här…"></textarea>
     </div>
 
     <div class="field">
-      <div class="field-label">Skicka kl.</div>
+      <div class="field-label">Skicka klockan</div>
       <input type="time" id="sendTime"/>
     </div>
 
     <div class="divider"></div>
 
-    <button class="btn" id="sendBtn">
+    <button class="btn" id="sendBtn" onclick="sendMsg()">
       <span class="spinner" id="spinner"></span>
       <span id="btnLabel">Schemalägg meddelande</span>
     </button>
@@ -425,24 +423,30 @@
 </main>
 
 <script>
-  var NODE_RED_URL  = "https://viability-outtakes-polish.ngrok-free.dev/discord-send";
-  var AUTH_URL      = "https://viability-outtakes-polish.ngrok-free.dev/discord-auth";
-  var CLIENT_ID     = "1501874884655976599";
-  var REDIRECT_URI  = "https://swedecraft.com/delay";
+  var NODE_RED_URL = "https://viability-outtakes-polish.ngrok-free.dev/discord-send";
+  var AUTH_URL     = "https://viability-outtakes-polish.ngrok-free.dev/discord-auth";
+  var CLIENT_ID    = "1501874884655976599";
+  var REDIRECT_URI = "https://swedecraft.com/delay";
 
-  // Check if returning from Discord OAuth2
+  // Kolla om vi är tillbaka från Discord OAuth2
   var params = new URLSearchParams(window.location.search);
   var code   = params.get('code');
 
-  // Check if already logged in
+  // Kolla om redan inloggad
   var savedUser = null;
   try { savedUser = JSON.parse(sessionStorage.getItem('discordUser')); } catch(e) {}
 
   if (savedUser) {
     showMessageView(savedUser);
   } else if (code) {
+    document.getElementById('inviteCard').style.display = 'none';
+    document.getElementById('loginCard').innerHTML = '<p style="text-align:center;color:var(--muted);font-family:\'JetBrains Mono\',monospace;font-size:0.8rem;padding:1rem;">Loggar in…</p>';
+    document.getElementById('loginCard').style.display = 'block';
     exchangeCode(code);
   }
+
+  function showLogin()  { document.getElementById('inviteCard').style.display='none'; document.getElementById('loginCard').style.display='block'; }
+  function showInvite() { document.getElementById('loginCard').style.display='none'; document.getElementById('inviteCard').style.display='block'; }
 
   function loginWithDiscord() {
     var url = 'https://discord.com/oauth2/authorize'
@@ -454,7 +458,6 @@
   }
 
   async function exchangeCode(code) {
-    document.getElementById('loginCard').innerHTML = '<p style="text-align:center;color:var(--muted);font-family:\'JetBrains Mono\',monospace;font-size:0.8rem;">Loggar in…</p>';
     try {
       var res = await fetch(AUTH_URL, {
         method: 'POST',
@@ -467,24 +470,25 @@
         window.history.replaceState({}, document.title, window.location.pathname);
         showMessageView(user);
       } else {
-        document.getElementById('loginCard').innerHTML = '<p style="color:var(--error);text-align:center;font-size:0.8rem;">Inloggning misslyckades. <a href="" style="color:var(--accent)">Försök igen</a></p>';
+        document.getElementById('loginCard').innerHTML = '<p style="color:var(--error);text-align:center;font-size:0.85rem;padding:1rem;">Inloggning misslyckades. <a href="javascript:location.reload()" style="color:var(--accent)">Försök igen</a></p>';
       }
     } catch(e) {
-      document.getElementById('loginCard').innerHTML = '<p style="color:var(--error);text-align:center;font-size:0.8rem;">Kunde inte nå servern. <a href="" style="color:var(--accent)">Försök igen</a></p>';
+      document.getElementById('loginCard').innerHTML = '<p style="color:var(--error);text-align:center;font-size:0.85rem;padding:1rem;">Kunde inte nå servern. <a href="javascript:location.reload()" style="color:var(--accent)">Försök igen</a></p>';
     }
   }
 
   function showMessageView(user) {
-    document.getElementById('loginCard').style.display = 'none';
-    document.getElementById('msgCard').style.display = 'block';
+    document.getElementById('inviteCard').style.display = 'none';
+    document.getElementById('loginCard').style.display  = 'none';
+    document.getElementById('msgCard').style.display    = 'block';
     document.getElementById('userTag').textContent = user.username;
-    document.getElementById('userId').textContent = 'ID: ' + user.id;
+    document.getElementById('userId').textContent  = 'ID: ' + user.id;
+    var avatarEl = document.getElementById('avatar');
     if (user.avatar) {
-      var avatarEl = document.getElementById('avatar');
       avatarEl.src = 'https://cdn.discordapp.com/avatars/' + user.id + '/' + user.avatar + '.png';
-      avatarEl.style.display = 'block';
+    } else {
+      avatarEl.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
     }
-    document.getElementById('sendBtn').addEventListener('click', sendMsg);
   }
 
   function logout() {
@@ -527,7 +531,7 @@
         document.getElementById('sendTime').value = '';
       } else {
         toast.className = 'toast show err';
-        toast.textContent = '✗ Node-RED returnerade fel ' + res.status;
+        toast.textContent = '✗ Serverfel ' + res.status;
       }
     } catch(e) {
       toast.className = 'toast show err';
@@ -539,6 +543,5 @@
     label.textContent = 'Schemalägg meddelande';
   }
 </script>
-
 </body>
 </html>
