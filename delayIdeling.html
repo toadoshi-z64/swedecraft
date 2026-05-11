@@ -263,6 +263,9 @@
     }
   });
 
+  // Signalera till föräldern att iframen är redo att ta emot koden
+  window.parent.postMessage({ type: 'iframe_ready' }, '*');
+
   function loginWithDiscord() {
     // Navigera hela sidan till Discord — delay.html tar emot redirecten och skickar koden hit
     window.top.location.href = 'https://discord.com/oauth2/authorize'
