@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delay Bot — Swedecraft</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Clash+Display:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #080a0f;
+      --surface:  #0f1219;
+      --border:   #1c2030;
+      --border2:  #252d42;
+      --accent:   #5865f2;
+      --accent2:  #7289ff;
+      --glow:     rgba(88,101,242,0.25);
+      --text:     #dde1f0;
+      --muted:    #4a5268;
+      --success:  #3ba55d;
+      --error:    #ed4245;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
+    html, body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', 'Segoe UI', sans-serif;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Grid lines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(88,101,242,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88,101,242,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glow orb */
+    .orb {
+      position: fixed;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(88,101,242,0.08) 0%, transparent 65%);
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Layout */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+
+    /* Top nav */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,10,15,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .nav-logo-icon svg { width: 18px; height: 18px; fill: #fff; }
+
+    .nav-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 99px;
+    }
+
+    /* Hero text */
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #7289ff, #5865f2, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 340px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Card */
+    .card {
+      width: 100%;
+      max-width: 460px;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow:
+        0 0 0 1px rgba(88,101,242,0.08),
+        0 40px 80px rgba(0,0,0,0.6),
+        0 0 60px rgba(88,101,242,0.05);
+      animation: fadeUp 0.7s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Fields */
+    .field {
+      margin-bottom: 1.4rem;
+    }
+
+    .field-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .field-label::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    .input-wrap { position: relative; }
+
+    .input-prefix {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent2);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      color: var(--text);
+      font-family: 'Syne', 'Segoe UI', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+
+    input.has-prefix { padding-left: 1.7rem; }
+
+    input[type="time"] {
+      font-family: 'JetBrains Mono', monospace;
+      color-scheme: dark;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--glow);
+    }
+
+    input::placeholder, textarea::placeholder { color: var(--border2); }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.65;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border2), transparent);
+      margin: 1.8rem 0;
+    }
+
+    /* Button */
+    .btn {
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Syne', 'Segoe UI', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px var(--glow);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.13) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .btn:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 32px var(--glow); }
+    .btn:active { transform: translateY(0); }
+    .btn.loading { opacity: 0.65; pointer-events: none; }
+
+    .spinner {
+      display: none;
+      width: 15px; height: 15px;
+      border: 2px solid rgba(255,255,255,0.25);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Toast */
+    .toast {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .toast.show { display: flex; }
+    .toast.ok  { background: rgba(59,165,93,0.1);  border: 1px solid rgba(59,165,93,0.25);  color: var(--success); }
+    .toast.err { background: rgba(237,66,69,0.08); border: 1px solid rgba(237,66,69,0.25);  color: var(--error); }
+
+    /* Footer */
+    .footer {
+      margin-top: 2.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--border2);
+      letter-spacing: 0.1em;
+      text-align: center;
+      animation: fadeUp 0.7s 0.2s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @media (max-width: 500px) {
+      .card { padding: 1.8rem 1.4rem; }
+      .nav { padding: 1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="orb"></div>
+
+<nav class="nav">
+  <a class="nav-logo" href="https://swedecraft.com">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    </div>
+    <span class="nav-brand">Swedecraft</span>
+  </a>
+  <span class="nav-tag">delay bot</span>
+</nav>
+
+<main class="page">
+  <div class="hero">
+    <div class="hero-eyebrow">Discord Automation</div>
+    <h1>Schedule a<br/><span>Discord Message</span></h1>
+    <p>Enter a username, your message, and the time you want it delivered.</p>
+  </div>
+
+  <div class="card">
+    <div class="field">
+      <div class="field-label">Discord Username</div>
+      <div class="input-wrap">
+        <span class="input-prefix">@</span>
+        <input type="text" id="username" class="has-prefix" placeholder="your_username" autocomplete="off"/>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Message</div>
+      <textarea id="message" placeholder="Type your message here…"></textarea>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Send At</div>
+      <input type="time" id="sendTime"/>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="btn" id="sendBtn">
+      <span class="spinner" id="spinner"></span>
+      <span id="btnLabel">Send Message</span>
+    </button>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <p class="footer">SWEDECRAFT.COM / DELAY &nbsp;·&nbsp; POWERED BY NODE-RED</p>
+</main>
+
+<script>
+  var NODE_RED_URL = "https://eighty-lands-exist.loca.lt/discord-send";
+
+  document.getElementById('sendBtn').addEventListener('click', sendMsg);
+
+  ['username', 'sendTime'].forEach(function(id) {
+    document.getElementById(id).addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendMsg();
+    });
+  });
+
+  async function sendMsg() {
+    var username = document.getElementById('username').value.trim();
+    var message  = document.getElementById('message').value.trim();
+    var sendTime = document.getElementById('sendTime').value;
+    var btn      = document.getElementById('sendBtn');
+    var spinner  = document.getElementById('spinner');
+    var label    = document.getElementById('btnLabel');
+    var toast    = document.getElementById('toast');
+
+    toast.className = 'toast';
+
+    if (!username || !message || !sendTime) {
+      toast.className = 'toast show err';
+      toast.textContent = '⚠ Please fill in all three fields.';
+      return;
+    }
+
+    btn.classList.add('loading');
+    spinner.style.display = 'block';
+    label.textContent = 'Sending…';
+
+    try {
+      var res = await fetch(NODE_RED_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'bypass-tunnel-reminder': 'true'
+        },
+        body: JSON.stringify({ username: username, message: message, sendTime: sendTime })
+      });
+
+      if (res.ok) {
+        toast.className = 'toast show ok';
+        toast.textContent = '✓ Message queued successfully!';
+        document.getElementById('message').value = '';
+        document.getElementById('sendTime').value = '';
+      } else {
+        toast.className = 'toast show err';
+        toast.textContent = '✗ Node-RED returned error ' + res.status;
+      }
+    } catch(e) {
+      toast.className = 'toast show err';
+      toast.textContent = '✗ Could not reach Node-RED — is localtunnel running?';
+    }
+
+    btn.classList.remove('loading');
+    spinner.style.display = 'none';
+    label.textContent = 'Send Message';
+  }
+</script>
+
+</body>
+</html>
