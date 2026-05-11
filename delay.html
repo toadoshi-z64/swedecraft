@@ -377,15 +377,14 @@
   <div class="hero">
     <div class="hero-eyebrow">Discord Automation</div>
     <h1>Schedule a<br/><span>Discord Message</span></h1>
-    <p>Enter a username, your message, and the time you want it delivered.</p>
+    <p>Enter a Discord User ID, your message, and the time you want it delivered.</p>
   </div>
 
   <div class="card">
     <div class="field">
-      <div class="field-label">Discord Username</div>
+      <div class="field-label">Discord User ID</div>
       <div class="input-wrap">
-        <span class="input-prefix">@</span>
-        <input type="text" id="username" class="has-prefix" placeholder="your_username" autocomplete="off"/>
+        <input type="text" id="username" placeholder="123456789012345678" autocomplete="off"/>
       </div>
     </div>
 
@@ -413,7 +412,7 @@
 </main>
 
 <script>
-  var NODE_RED_URL = "https://eighty-lands-exist.loca.lt/discord-send";
+  var NODE_RED_URL = "https://swedecraft.loca.lt/discord-send";
 
   document.getElementById('sendBtn').addEventListener('click', sendMsg);
 
@@ -451,7 +450,7 @@
           'Content-Type': 'application/json',
           'bypass-tunnel-reminder': 'true'
         },
-        body: JSON.stringify({ username: username, message: message, sendTime: sendTime })
+        body: JSON.stringify({ userId: username, message: message, sendTime: sendTime })
       });
 
       if (res.ok) {
