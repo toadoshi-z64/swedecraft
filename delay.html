@@ -9,6 +9,19 @@
 <link rel="stylesheet" href="delay.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <script> var params = new URLSearchParams(window.location.search);
+  var code   = params.get('code');
+  if (code) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+    window.addEventListener('message', function handler(e) {
+      if (e.data && e.data.type === 'iframe_ready') {
+        window.removeEventListener('message', handler);
+        document.getElementById('delayFrame').contentWindow.postMessage(
+          { type: 'discord_code', code: code }, '*'
+        );
+      }
+    });
+  } </script>
     <link rel="icon" href="images/favicon.png">
     
     
@@ -42,8 +55,8 @@
         <a href="varaservrar" class="u-active-none u-border-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-4" title="Våra servrar">Våra servrar</a>
       </div>
       <p class="u-align-center u-text u-text-black u-text-1">Delay bot</p>
-      <div class="custom-expanded u-clearfix u-custom-html u-custom-html-2">
-        <iframe src="delayIdeling.html" style="width:100%; height:600px; border:none; background:transparent;" allowtransparency="true"></iframe>
+      <div class="u-clearfix u-custom-html u-expanded-width u-custom-html-2">
+        <iframe id="delayFrame" src="https://swedecraft.com/delayIdeling" style="width:100%; height:600px; border:none; background:transparent;" allowtransparency="true"></iframe>
       </div>
     </section>
     
