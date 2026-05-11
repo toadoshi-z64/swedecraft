@@ -412,7 +412,7 @@
 </main>
 
 <script>
-  var NODE_RED_URL = "https://swedecraft.loca.lt/discord-send";
+  var NODE_RED_URL = "https://viability-outtakes-polish.ngrok-free.dev/discord-send";
 
   document.getElementById('sendBtn').addEventListener('click', sendMsg);
 
@@ -448,7 +448,7 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'bypass-tunnel-reminder': 'true'
+          'ngrok-skip-browser-warning': 'true'
         },
         body: JSON.stringify({ userId: username, message: message, sendTime: sendTime })
       });
