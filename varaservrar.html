@@ -11,10 +11,10 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <script> window.onload = function () {
   var servers = [
-    { id: "status-survival", ip: "waking-trophy.gl.joinmc.link" },
+    { id: "status-survival", ip: "mc.swedecraft.com" },
     { id: "status-modded",   ip: "scraftmod.quedoom.com"               },
-	 { id: "status-aero",   ip: "else-que.gl.joinmc.link"               },
-    { id: "status-open",     ip: "scraft.minecraft.party"                  }
+	 { id: "status-aero",   ip: "aero.swedecraft.com"               },
+    { id: "status-open",     ip: "open.swedecraft.com"                  }
   ];
   function fetchStatus(server) {
     var el = document.getElementById(server.id);
@@ -89,7 +89,7 @@
           <p class="u-align-center u-text u-text-black u-text-4">(whitelist) </p>
           <div class="custom-expanded u-clearfix u-custom-html u-custom-html-4">
             <button class="frutiger-aero-button medium" onclick="
-    navigator.clipboard.writeText('waking-trophy.gl.joinmc.link');
+    navigator.clipboard.writeText('mc.swedecraft.com');
     this.textContent = 'Kopierad!';
     setTimeout(() =&gt; this.textContent = 'Server IP', 2000);
   "> Server IP </button>
@@ -134,7 +134,7 @@
         <p class="u-align-center u-text u-text-black u-text-8">(öppen)</p>
         <div class="custom-expanded u-clearfix u-custom-html u-custom-html-12">
           <button class="frutiger-aero-button medium" onclick="
-    navigator.clipboard.writeText('scraft.minecraft.party');
+    navigator.clipboard.writeText('open.swedecraft.com');
     this.textContent = 'Kopierad!';
     setTimeout(() =&gt; this.textContent = 'Server IP', 2000);
   "> Server IP </button>
@@ -156,7 +156,7 @@
         <p class="u-align-center u-text u-text-black u-text-10">(snart)</p>
         <div class="custom-expanded u-clearfix u-custom-html u-custom-html-16">
           <button class="frutiger-aero-button medium" onclick="
-    navigator.clipboard.writeText('else-que.gl.joinmc.link');
+    navigator.clipboard.writeText('aero.swedecraft.com');
     this.textContent = 'Kopierad!';
     setTimeout(() =&gt; this.textContent = 'Server IP', 2000);
   "> Server IP </button>
