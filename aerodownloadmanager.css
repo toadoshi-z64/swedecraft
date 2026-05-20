@@ -1,0 +1,374 @@
+ .u-section-1 {
+  background-image: url("images/frutiger_aero.jpg");
+  background-position: 50% 50%;
+  background-size: cover;
+  min-height: 1440px;
+}
+
+.u-section-1 .u-group-elements-1 {
+  min-height: 951px;
+  height: auto;
+  width: 1140px;
+  margin: 150px auto 0;
+}
+
+.u-section-1 .u-image-1 {
+  height: 871px;
+  filter: none;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  margin-top: 80px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-shape-1 {
+  height: 873px;
+  background-image: none;
+  margin-top: -873px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-custom-html-1 {
+  height: auto;
+  min-height: 80px;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  margin-top: -951px;
+  margin-bottom: 0;
+}
+
+.u-section-1 .u-image-2 {
+  width: 78px;
+  height: 78px;
+  margin: -80px auto 0 0;
+}
+
+.u-section-1 .u-image-3 {
+  width: 39px;
+  height: 39px;
+  margin: -57px 114px 0 auto;
+}
+
+.u-section-1 .u-image-4 {
+  width: 39px;
+  height: 39px;
+  margin: -39px 63px 0 auto;
+}
+
+.u-section-1 .u-image-5 {
+  width: 39px;
+  height: 39px;
+  margin: -39px 12px 0 auto;
+}
+
+.u-section-1 .u-btn-1 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: -31px 1014px 0 90px;
+  padding: 0;
+}
+
+.u-section-1 .u-btn-2 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: -25px 896px 0 138px;
+  padding: 0;
+}
+
+.u-section-1 .u-btn-3 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: -24px 790px 0 256px;
+  padding: 0;
+}
+
+.u-section-1 .u-btn-4 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: -24px 687px 0 362px;
+  padding: 0;
+}
+
+.u-section-1 .u-rotation-parent-1 {
+  animation-timing-function: ease;
+  width: 3px;
+  height: 252px;
+  margin: -591px 840px 0 calc(((100% - 1440px) / 2)  + 20px);
+}
+
+.u-section-1 .u-shape-2 {
+  width: 252px;
+  height: 3px;
+  transform-origin: center center;
+  margin-left: 841px;
+  margin-right: 0;
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+}
+
+.u-section-1 .u-group-elements-2 {
+  width: 906px;
+  min-height: 738px;
+  margin: -540px auto 60px;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 4.5rem;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  margin: 0;
+}
+
+.u-section-1 .u-text-2 {
+  margin: -13px 0 0;
+}
+
+.u-section-1 .u-text-3 {
+  margin: 22px 0 0;
+}
+
+.u-section-1 .u-shape-3 {
+  width: 813px;
+  height: 3px;
+  margin: 11px auto 0;
+}
+
+.u-section-1 .u-rotation-parent-2 {
+  animation-timing-function: ease;
+  width: 3px;
+  height: 252px;
+  margin: 30px auto 0 308px;
+}
+
+.u-section-1 .u-shape-4 {
+  width: 252px;
+  height: 3px;
+  transform-origin: center center;
+  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+}
+
+.u-section-1 .u-image-6 {
+  width: 172px;
+  height: 172px;
+  margin: -233px auto 0;
+}
+
+.u-section-1 .u-custom-html-2 {
+  height: auto;
+  min-height: 50px;
+  margin: 19px 650px 0 60px;
+}
+
+.u-section-1 .u-custom-html-3 {
+  height: auto;
+  min-height: 50px;
+  width: 196px;
+  margin: -51px auto 0;
+}
+
+.u-section-1 .u-image-7 {
+  width: 172px;
+  height: 172px;
+  margin: -240px auto 0 80px;
+}
+
+.u-section-1 .u-shape-5 {
+  width: 813px;
+  height: 3px;
+  margin: 85px auto 0;
+}
+
+.u-section-1 .u-text-4 {
+  margin: 10px 0 0;
+}
+
+.u-section-1 .u-text-5 {
+  margin: 10px 0 0;
+}
+
+.u-section-1 .u-btn-5 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: 26px auto 0;
+  padding: 0;
+}
+
+.u-section-1 .u-btn-6 {
+  --radius: 0px;
+  --top-left-radius: 0px;
+  --top-right-radius: 0px;
+  --bottom-right-radius: 0px;
+  --bottom-left-radius: 0px;
+  background-image: none;
+  border-style: solid;
+  margin: 11px auto 0;
+  padding: 0;
+}
+
+@media (max-width: 1199px) {
+   .u-section-1 {
+    min-height: 1080px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 1080px;
+  }
+
+  .u-section-1 .u-rotation-parent-1 {
+    margin-left: calc(((100% - 1080px) / 2) + 20px);
+  }
+}
+
+@media (max-width: 991px) {
+   .u-section-1 {
+    min-height: 991px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 991px;
+  }
+
+  .u-section-1 .u-rotation-parent-1 {
+    margin-left: calc(((100% - 991px) / 2) + 20px);
+  }
+}
+
+@media (max-width: 767px) {
+   .u-section-1 {
+    min-height: 767px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 767px;
+  }
+
+  .u-section-1 .u-rotation-parent-1 {
+    margin-right: 764px;
+    margin-left: calc(((100% - 767px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-2 {
+    width: 767px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 575px) {
+   .u-section-1 {
+    min-height: 575px;
+  }
+
+  .u-section-1 .u-group-elements-1 {
+    width: 575px;
+  }
+
+  .u-section-1 .u-rotation-parent-1 {
+    margin-right: 572px;
+    margin-left: calc(((100% - 575px) / 2));
+  }
+
+  .u-section-1 .u-group-elements-2 {
+    width: 575px;
+  }
+}/* Authentic Frutiger Aero Button CSS */
+.frutiger-aero-button {
+  /* OKLCH Color System for accurate colors */
+  
+  
+  
+  /* Color Variables */
+  
+  
+  
+  
+  /* Base Styling */
+  background-color: oklch(75% 0.2 245 / 0.8);
+  background:
+    radial-gradient(
+    farthest-corner at bottom center,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  ),
+    linear-gradient(to bottom, oklch(45% 0.2 245 / 0.75), oklch(75% 0.2 245 / 0.8));
+  border: 1px solid oklch(75% 0.2 245 / 0.8);
+  border-radius: 9999px;
+  /* Shadows and Effects */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  /* Typography */
+  color: oklch(15% calc(0.2 * 0.5) 245);
+  font-family: "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", system-ui, sans-serif;
+  font-weight: 700;
+  text-shadow: 0 2px 0.5em rgba(0, 0, 0, 0.2);
+  /* Layout */
+  cursor: pointer;
+  position: relative;
+  transition: all 300ms ease;
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* Top Highlight Effect */
+.frutiger-aero-button::after {
+  content: "";
+  position: absolute;
+  top: 4%;
+  left: 0.75em;
+  width: calc(100% - 1.5em);
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: inherit;
+  transition: background 400ms ease;
+  pointer-events: none;
+}
+/* Hover State */
+.frutiger-aero-button:hover,
+.frutiger-aero-button:focus {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+/* Active State */
+.frutiger-aero-button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(1px);
+}
+/* Size Variations */
+.frutiger-aero-button.small {
+  padding: 0.5em 1.5em;
+  font-size: 0.875rem;
+}
+.frutiger-aero-button.medium {
+  padding: 0.75em 2em;
+  font-size: 1rem;
+}
+.frutiger-aero-button.large {
+  padding: 1em 3em;
+  font-size: 1.125rem;
+}
