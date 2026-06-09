@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download - Free Upload Manager</title>
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    [x-cloak] { display: none !important; }
+    #buzz-wrap { width: 100%; overflow: hidden; background: #0d0d0d; }
+    #buzz-frame { width: 100%; height: 300px; border: none; display: block; background: #0d0d0d; }
+  </style>
+</head>
+<body class="min-h-screen p-4" x-data="dlApp()" x-init="init()">
+
+  <div class="text-center mb-1">
+    <a href="../index.html" class="inline-flex items-center gap-3 no-underline">
+      <img src="../images/logo.png" alt="Free Upload Manager" class="h-12 w-auto">
+      <h1 class="text-3xl font-bold mt-1 mb-0 text-foreground">FREE UPLOAD MANAGER</h1>
+    </a>
+    <p class="mt-0 text-muted-foreground">Fast and reliable file hosting service.</p>
+  </div>
+
+  <div class="text-center mb-4 text-sm">
+    <a href="../index.html" class="hover:underline font-medium">Index</a>
+    <span class="mx-1">|</span>
+    <a href="../help/index.html" class="hover:underline text-primary">Help</a>
+    <span class="mx-1">|</span>
+    <a href="../discord.html" class="hover:underline text-primary">Discord</a>
+    <span class="mx-1">|</span>
+    <a href="../terms.html" class="hover:underline text-primary">Terms</a>
+    <span class="mx-1">|</span>
+    <template x-if="accountId">
+      <span>
+        <a href="../account/index.html" class="hover:underline text-primary">My Account</a>
+        <span class="mx-1">|</span>
+        <button @click="localStorage.removeItem('fum_account_id'); accountId=''"
+          class="hover:underline text-primary bg-transparent border-none p-0 cursor-pointer text-sm">Logout</button>
+      </span>
+    </template>
+    <template x-if="!accountId">
+      <a href="../auth/index.html" class="hover:underline text-primary">Login / Signup</a>
+    </template>
+  </div>
+
+  <div class="mx-auto max-w-[60rem]">
+
+    <div x-show="error" class="mt-4 text-sm">
+      <p class="text-destructive" x-text="error"></p>
+      <a href="../index.html" class="text-primary hover:underline">Upload a new file →</a>
+    </div>
+
+    <div x-show="!error && fileId" x-cloak id="buzz-wrap">
+      <iframe id="buzz-frame" scrolling="no"></iframe>
+      <p class="text-xs text-muted-foreground mt-3">
+        Hosted by Free Upload Manager ·
+        <a href="../index.html" class="hover:underline text-primary">Upload your own file</a>
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    function dlApp() {
+      return {
+        accountId: localStorage.getItem('fum_account_id') || '',
+        fileId   : '',
+        error    : '',
+
+        async init() {
+          const p      = new URLSearchParams(window.location.search);
+          const rawUrl = p.get('url') || '';
+          const name   = decodeURIComponent(p.get('name') || '');
+
+          const decoded     = decodeURIComponent(rawUrl);
+          const innerParams = new URLSearchParams(decoded.split('?')[1] || '');
+          this.fileId = innerParams.get('_id')
+            || decoded.replace(/.*buzzheavier\.com\//, '').split('?')[0].trim();
+
+          if (!this.fileId) { this.error = 'Ogiltig nedladdningslänk.'; return; }
+          if (name) document.title = name + ' - Free Upload Manager';
+
+          // Auto-resize from srcdoc postMessage
+          window.addEventListener('message', e => {
+            if (e.data?.type === 'iframeHeight') {
+              const f = document.getElementById('buzz-frame');
+              if (f) f.style.height = (e.data.h + 20) + 'px';
+            }
+          });
+
+          await this.loadPage();
+        },
+
+        async loadPage() {
+          const frame  = document.getElementById('buzz-frame');
+          const WORKER = (typeof FUM_CONFIG !== 'undefined') ? FUM_CONFIG.WORKER_URL : '';
+
+          try {
+            // Worker fetches buzzheavier HTML and injects FUM background colour
+            const res = await fetch(`${WORKER}/page/${this.fileId}`);
+            if (!res.ok) throw new Error('worker ' + res.status);
+
+            let html = await res.text();
+
+            // Inject resize + popup-blocker script into the srcdoc
+            const script = [
+              '<script>(function(){',
+              '  function sh(){parent.postMessage({type:"iframeHeight",h:document.body.scrollHeight},"*");}',
+              '  new ResizeObserver(sh).observe(document.body); sh();',
+              '  window.open=function(u){',
+              '    if(u&&(u.includes("download")||u.startsWith("blob:"))){',
+              '      var a=document.createElement("a");a.href=u;a.download="";a.click();',
+              '    }',
+              '    return null;',
+              '  };',
+              '})()<\/script>'
+            ].join('\n');
+
+            html = html.includes('</body>')
+              ? html.replace('</body>', script + '</body>')
+              : html + script;
+
+            frame.srcdoc = html;
+            frame.style.height = '380px';
+
+          } catch (_) {
+            // Fallback: direct iframe with negative margin to hide their header
+            frame.src = 'https://buzzheavier.com/' + this.fileId;
+            frame.setAttribute('sandbox',
+              'allow-scripts allow-downloads allow-forms allow-same-origin');
+            frame.style.marginTop = '-135px';
+            frame.style.height    = '620px';
+          }
+        }
+      };
+    }
+  </script>
+</body>
+</html>
